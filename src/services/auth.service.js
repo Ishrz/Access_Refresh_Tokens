@@ -1,7 +1,7 @@
 import { generateAccessToken, generateRefreshToken } from "../utils/genrateTokens.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 export const registerService = async (userData) => {
 
     const { username, email, password } = userData
@@ -26,6 +26,9 @@ export const registerService = async (userData) => {
 
     const accessToken = await generateAccessToken(user._id)
     const refreshToken = await generateRefreshToken(user._id)
+
+    user.refreshToken = refreshToken
+    await user.save()
 
     return {
         user:{
@@ -62,6 +65,9 @@ export const loginService = async (userData) => {
     const accessToken = await generateAccessToken(user._id)
     const refreshToken = await generateRefreshToken(user._id)
 
+    user.refreshToken = refreshToken
+    await user.save()
+
     return {
         accessToken,
         refreshToken,
@@ -73,3 +79,23 @@ export const loginService = async (userData) => {
     }
 
 }
+
+export const generateAccessTokenService = async (refreshToken) => {
+
+    const decoded = await jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+
+    if(!decoded || !decoded.id) {
+        throw new Error("Unauthorized request: Invalid refresh token")
+    }
+
+    const user = await User.findById(decoded.id)
+
+    if(!user || user.refreshToken !== refreshToken) {
+        throw new Error("Unauthorized request: Invalid refresh token")
+    }
+
+    const newAccessToken = await generateAccessToken(user._id)
+
+    return newAccessToken
+
+ }
