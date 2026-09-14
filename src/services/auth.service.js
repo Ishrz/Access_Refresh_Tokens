@@ -1,4 +1,4 @@
-import { generateAccessToken, generateRefreshToken } from "../../utils/genrateTokens.js";
+import { generateAccessToken, generateRefreshToken } from "../utils/genrateTokens.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 
