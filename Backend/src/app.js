@@ -2,8 +2,8 @@ import express from "express"
 import authRouter from "./routes/auth.route.js"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
-import getMeRouter from "./routes/getMe.route.js"
 import cors from "cors"
+import homeRouter from "./routes/home.route.js"
 
 const app = express()
 
@@ -20,7 +20,7 @@ app.use(cors({
 
 app.use("/api/v1/auth", authRouter)
 
-app.use("/api/v1/me", getMeRouter)
+app.use("/api/v1/home", homeRouter)
 
 
 

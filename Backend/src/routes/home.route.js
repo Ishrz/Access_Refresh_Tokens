@@ -2,10 +2,10 @@ import { Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 
-const getMeRouter = Router();
+const homeRouter = Router();
 
 
-getMeRouter.get("/", authMiddleware ,(req, res) => {
+homeRouter.get("/", authMiddleware ,(req, res) => {
 
     res.send({
         message: "Get me route is working",
@@ -15,4 +15,4 @@ getMeRouter.get("/", authMiddleware ,(req, res) => {
 
 })
 
-export default getMeRouter;
+export default homeRouter;
