@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { axiosInstance } from "../../config/axiosinstance.jsx";
+import { useDispatch } from "react-redux";
+import { addUser } from "../state/authReducer.jsx";
 
 const UseAuth = () => {
+
+    const dispatch = useDispatch()
+
   //login states
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +54,8 @@ const UseAuth = () => {
         email:loginData.email.trim(),
         password: loginData.password
     }) 
+
+    dispatch(addUser(response.data.user))
 
     console.log(response);
     // setIsLoading(false);

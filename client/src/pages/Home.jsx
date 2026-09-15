@@ -15,8 +15,13 @@ import {
   Plus,
   Sliders
 } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 export default function Home({ user, onLogout }) {
+
+    // const userr = useSelector(state => state.auth.user)
+    // console.log(userr)
+
   const [activeTab, setActiveTab] = useState('overview');
   const [isRefreshing, setIsRefreshing] = useState(false);
 
