@@ -3,7 +3,7 @@ import authRouter from "./routes/auth.route.js"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import getMeRouter from "./routes/getMe.route.js"
-
+import cors from "cors"
 
 const app = express()
 

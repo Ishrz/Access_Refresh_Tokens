@@ -44,6 +44,7 @@ export const registerService = async (userData) => {
 
 export const loginService = async (userData) => {
 
+    // console.log(userData)
      const {email, password } = userData;
 
     if(!email || !password) {

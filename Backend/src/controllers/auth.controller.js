@@ -31,7 +31,10 @@ export const registerHandler = async (req, res) => {
 
 export const loginHandler = async (req, res) => {
   try {
+        //  console.log(req.body)
+
     const { user, accessToken, refreshToken } = await loginService(req.body);
+
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,

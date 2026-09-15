@@ -6,7 +6,7 @@ const authRouter = Router()
 
 authRouter.post("/register", registerHandler)
 
-authRouter.get("/login", loginHandler)
+authRouter.post("/login",loginHandler)
 
 authRouter.get("/generateAccessToken",  generateAccessTokenHandler)
 
